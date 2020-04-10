@@ -1,6 +1,6 @@
 {
   "name": "@equisoft/account-service-sdk-typescript",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "OpenAPI client for @equisoft/account-service-sdk-typescript",
   "author": "Equisoft Inc.",
   "main": "./dist/index.js",
