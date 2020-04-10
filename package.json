@@ -2,9 +2,14 @@
   "name": "@equisoft/account-service-sdk-typescript",
   "version": "0.0.1",
   "description": "OpenAPI client for @equisoft/account-service-sdk-typescript",
-  "author": "OpenAPI-Generator",
+  "author": "Equisoft Inc.",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kronostechnologies/account-service-sdk-typescript.git"
+  },
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build"
