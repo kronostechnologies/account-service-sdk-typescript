@@ -24,6 +24,9 @@ import {
     User,
     UserFromJSON,
     UserToJSON,
+    UserAccountSearchResult,
+    UserAccountSearchResultFromJSON,
+    UserAccountSearchResultToJSON,
 } from '../models';
 
 export interface DeleteUserSessionsRequest {
@@ -38,8 +41,14 @@ export interface GetUuidByIdRequest {
     id: number;
 }
 
+export interface ListUsersRequest {
+    identifierOrEmail?: string | null;
+    identifier?: string | null;
+    email?: string | null;
+}
+
 /**
- * no description
+ * 
  */
 export class UserApi extends runtime.BaseAPI {
 
@@ -129,6 +138,44 @@ export class UserApi extends runtime.BaseAPI {
      */
     async getUuidById(requestParameters: GetUuidByIdRequest): Promise<Id> {
         const response = await this.getUuidByIdRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Searches accounts that match ALL params. If no search parameters are provided, returns all users.
+     */
+    async listUsersRaw(requestParameters: ListUsersRequest): Promise<runtime.ApiResponse<Array<UserAccountSearchResult>>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.identifierOrEmail !== undefined) {
+            queryParameters['identifierOrEmail'] = requestParameters.identifierOrEmail;
+        }
+
+        if (requestParameters.identifier !== undefined) {
+            queryParameters['identifier'] = requestParameters.identifier;
+        }
+
+        if (requestParameters.email !== undefined) {
+            queryParameters['email'] = requestParameters.email;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/users`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(UserAccountSearchResultFromJSON));
+    }
+
+    /**
+     * Searches accounts that match ALL params. If no search parameters are provided, returns all users.
+     */
+    async listUsers(requestParameters: ListUsersRequest): Promise<Array<UserAccountSearchResult>> {
+        const response = await this.listUsersRaw(requestParameters);
         return await response.value();
     }
 

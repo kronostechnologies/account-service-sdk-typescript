@@ -13,7 +13,11 @@
  */
 
 /**
- * States: * `ENABLED` - Database is active. * `DISABLED` - Access to this database is suspended. * `DELETED` - Database is deleted. * `MAINTENANCE` - Database is in maintenance, login temporarily suspended. 
+ * States:
+ * * `ENABLED` - Database is active.
+ * * `DISABLED` - Access to this database is suspended.
+ * * `DELETED` - Database is deleted.
+ * * `MAINTENANCE` - Database is in maintenance, login temporarily suspended.
  * @export
  * @enum {string}
  */

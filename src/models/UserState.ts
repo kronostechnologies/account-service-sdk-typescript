@@ -13,7 +13,10 @@
  */
 
 /**
- * States: * `DELETED` - User is soft deleted or archived. * `DISABLED` - Temporarily denied login. * `ENABLED` - Allowed to login. 
+ * States:
+ * * `DELETED` - User is soft deleted or archived.
+ * * `DISABLED` - Temporarily denied login.
+ * * `ENABLED` - Allowed to login.
  * @export
  * @enum {string}
  */

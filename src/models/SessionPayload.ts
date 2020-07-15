@@ -56,6 +56,18 @@ export interface SessionPayload {
      * @memberof SessionPayload
      */
     mobileDevice?: boolean;
+    /**
+     * Indicate that the session is initiated from a public computer.
+     * @type {boolean}
+     * @memberof SessionPayload
+     */
+    isPublicComputer?: boolean;
+    /**
+     * Indicate that the session is initiated from a mobile device.
+     * @type {boolean}
+     * @memberof SessionPayload
+     */
+    isMobileDevice?: boolean;
 }
 
 export function SessionPayloadFromJSON(json: any): SessionPayload {
@@ -73,6 +85,8 @@ export function SessionPayloadFromJSONTyped(json: any, ignoreDiscriminator: bool
         'sso': !exists(json, 'sso') ? undefined : SsoProviderFromJSON(json['sso']),
         'publicComputer': !exists(json, 'publicComputer') ? undefined : json['publicComputer'],
         'mobileDevice': !exists(json, 'mobileDevice') ? undefined : json['mobileDevice'],
+        'isPublicComputer': !exists(json, 'isPublicComputer') ? undefined : json['isPublicComputer'],
+        'isMobileDevice': !exists(json, 'isMobileDevice') ? undefined : json['isMobileDevice'],
     };
 }
 
@@ -90,6 +104,8 @@ export function SessionPayloadToJSON(value?: SessionPayload | null): any {
         'sso': SsoProviderToJSON(value.sso),
         'publicComputer': value.publicComputer,
         'mobileDevice': value.mobileDevice,
+        'isPublicComputer': value.isPublicComputer,
+        'isMobileDevice': value.isMobileDevice,
     };
 }
 

@@ -13,7 +13,12 @@
  */
 
 /**
- * States: * `NEW` - Session creation is not finished.  It can\'t be used by consumer. * `ENABLED` - Session is active and ready. * `SUSPENDED` - Session idle for too long.  User has to reenter credentials to activate it (Not implemented yet). * `EXPIRED` - Session is expired. * `DELETED` - Session exists but is soft-deleted (Not implemented yet). 
+ * States:
+ * * `NEW` - Session creation is not finished.  It can't be used by consumer.
+ * * `ENABLED` - Session is active and ready.
+ * * `SUSPENDED` - Session idle for too long.  User has to reenter credentials to activate it (Not implemented yet).
+ * * `EXPIRED` - Session is expired.
+ * * `DELETED` - Session exists but is soft-deleted (Not implemented yet).
  * @export
  * @enum {string}
  */

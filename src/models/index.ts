@@ -12,6 +12,7 @@ export * from './SessionState';
 export * from './SsoProvider';
 export * from './SsoToken';
 export * from './User';
+export * from './UserAccountSearchResult';
 export * from './UserAgreement';
 export * from './UserAgreementState';
 export * from './UserState';

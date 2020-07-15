@@ -13,7 +13,9 @@
  */
 
 /**
- * States: * `ACCEPTED` - User agreement and term of use accepted by user. * `REQUESTED` - User has yet to approve user agreements. 
+ * States:
+ * * `ACCEPTED` - User agreement and term of use accepted by user.
+ * * `REQUESTED` - User has yet to approve user agreements.
  * @export
  * @enum {string}
  */

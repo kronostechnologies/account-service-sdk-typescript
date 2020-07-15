@@ -83,7 +83,7 @@ export interface SetSessionSsoTokenRequest {
 }
 
 /**
- * no description
+ * 
  */
 export class SessionApi extends runtime.BaseAPI {
 
