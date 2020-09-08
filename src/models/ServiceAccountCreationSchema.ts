@@ -24,12 +24,6 @@ export interface ServiceAccountCreationSchema {
      * @type {string}
      * @memberof ServiceAccountCreationSchema
      */
-    serviceName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ServiceAccountCreationSchema
-     */
     name?: string;
     /**
      * 
@@ -55,7 +49,6 @@ export function ServiceAccountCreationSchemaFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'serviceName': !exists(json, 'serviceName') ? undefined : json['serviceName'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'clientId': !exists(json, 'clientId') ? undefined : json['clientId'],
         'displayName': !exists(json, 'displayName') ? undefined : json['displayName'],
@@ -71,7 +64,6 @@ export function ServiceAccountCreationSchemaToJSON(value?: ServiceAccountCreatio
     }
     return {
         
-        'serviceName': value.serviceName,
         'name': value.name,
         'clientId': value.clientId,
         'displayName': value.displayName,

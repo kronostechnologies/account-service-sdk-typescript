@@ -18,6 +18,9 @@ import {
     ErrorPayload,
     ErrorPayloadFromJSON,
     ErrorPayloadToJSON,
+    ServiceAccountCreatedSchema,
+    ServiceAccountCreatedSchemaFromJSON,
+    ServiceAccountCreatedSchemaToJSON,
     ServiceAccountCreationSchema,
     ServiceAccountCreationSchemaFromJSON,
     ServiceAccountCreationSchemaToJSON,
@@ -42,7 +45,7 @@ export class ServiceAccountApi extends runtime.BaseAPI {
     /**
      * Creates a new service account
      */
-    async createServiceAccountRaw(requestParameters: CreateServiceAccountRequest): Promise<runtime.ApiResponse<void>> {
+    async createServiceAccountRaw(requestParameters: CreateServiceAccountRequest): Promise<runtime.ApiResponse<ServiceAccountCreatedSchema>> {
         if (requestParameters.serviceAccountCreationSchema === null || requestParameters.serviceAccountCreationSchema === undefined) {
             throw new runtime.RequiredError('serviceAccountCreationSchema','Required parameter requestParameters.serviceAccountCreationSchema was null or undefined when calling createServiceAccount.');
         }
@@ -61,14 +64,15 @@ export class ServiceAccountApi extends runtime.BaseAPI {
             body: ServiceAccountCreationSchemaToJSON(requestParameters.serviceAccountCreationSchema),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => ServiceAccountCreatedSchemaFromJSON(jsonValue));
     }
 
     /**
      * Creates a new service account
      */
-    async createServiceAccount(requestParameters: CreateServiceAccountRequest): Promise<void> {
-        await this.createServiceAccountRaw(requestParameters);
+    async createServiceAccount(requestParameters: CreateServiceAccountRequest): Promise<ServiceAccountCreatedSchema> {
+        const response = await this.createServiceAccountRaw(requestParameters);
+        return await response.value();
     }
 
     /**

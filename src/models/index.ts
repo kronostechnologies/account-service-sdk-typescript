@@ -5,6 +5,7 @@ export * from './ErrorPayload';
 export * from './Id';
 export * from './ImpersonatePayload';
 export * from './ServiceAccess';
+export * from './ServiceAccountCreatedSchema';
 export * from './ServiceAccountCreationSchema';
 export * from './ServiceAccountSchema';
 export * from './ServiceAccountStatus';
