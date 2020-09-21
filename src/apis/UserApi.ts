@@ -60,7 +60,7 @@ export class UserApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('uuid','Required parameter requestParameters.uuid was null or undefined when calling deleteUserSessions.');
         }
 
-        const queryParameters: runtime.HTTPQuery = {};
+        const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -89,7 +89,7 @@ export class UserApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('uuid','Required parameter requestParameters.uuid was null or undefined when calling getUser.');
         }
 
-        const queryParameters: runtime.HTTPQuery = {};
+        const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -119,7 +119,7 @@ export class UserApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getUuidById.');
         }
 
-        const queryParameters: runtime.HTTPQuery = {};
+        const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -145,7 +145,7 @@ export class UserApi extends runtime.BaseAPI {
      * Searches accounts that match ALL params. If no search parameters are provided, returns all users.
      */
     async listUsersRaw(requestParameters: ListUsersRequest): Promise<runtime.ApiResponse<Array<UserAccountSearchResult>>> {
-        const queryParameters: runtime.HTTPQuery = {};
+        const queryParameters: any = {};
 
         if (requestParameters.identifierOrEmail !== undefined) {
             queryParameters['identifierOrEmail'] = requestParameters.identifierOrEmail;

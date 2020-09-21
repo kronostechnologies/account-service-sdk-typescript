@@ -95,7 +95,7 @@ export class SessionApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('sessionPayload','Required parameter requestParameters.sessionPayload was null or undefined when calling createSession.');
         }
 
-        const queryParameters: runtime.HTTPQuery = {};
+        const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -124,7 +124,7 @@ export class SessionApi extends runtime.BaseAPI {
      * Delete all sessions
      */
     async deleteAllSessionsRaw(): Promise<runtime.ApiResponse<void>> {
-        const queryParameters: runtime.HTTPQuery = {};
+        const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -149,7 +149,7 @@ export class SessionApi extends runtime.BaseAPI {
      * Delete all expired sessions.
      */
     async deleteExpiredSessionsRaw(): Promise<runtime.ApiResponse<void>> {
-        const queryParameters: runtime.HTTPQuery = {};
+        const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -178,7 +178,7 @@ export class SessionApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('uuid','Required parameter requestParameters.uuid was null or undefined when calling deleteSession.');
         }
 
-        const queryParameters: runtime.HTTPQuery = {};
+        const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -211,7 +211,7 @@ export class SessionApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('tokenId','Required parameter requestParameters.tokenId was null or undefined when calling deleteSessionSsoToken.');
         }
 
-        const queryParameters: runtime.HTTPQuery = {};
+        const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -240,7 +240,7 @@ export class SessionApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('uuid','Required parameter requestParameters.uuid was null or undefined when calling enableSession.');
         }
 
-        const queryParameters: runtime.HTTPQuery = {};
+        const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -269,7 +269,7 @@ export class SessionApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('uuid','Required parameter requestParameters.uuid was null or undefined when calling enableSessionForEquisoftConnect.');
         }
 
-        const queryParameters: runtime.HTTPQuery = {};
+        const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -301,7 +301,7 @@ export class SessionApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('uuid','Required parameter requestParameters.uuid was null or undefined when calling getSession.');
         }
 
-        const queryParameters: runtime.HTTPQuery = {};
+        const queryParameters: any = {};
 
         if (requestParameters.keepAlive !== undefined) {
             queryParameters['keepAlive'] = requestParameters.keepAlive;
@@ -339,7 +339,7 @@ export class SessionApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('tokenId','Required parameter requestParameters.tokenId was null or undefined when calling getSessionSsoToken.');
         }
 
-        const queryParameters: runtime.HTTPQuery = {};
+        const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -374,7 +374,7 @@ export class SessionApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('impersonatePayload','Required parameter requestParameters.impersonatePayload was null or undefined when calling impersonate.');
         }
 
-        const queryParameters: runtime.HTTPQuery = {};
+        const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -408,7 +408,7 @@ export class SessionApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('uuid','Required parameter requestParameters.uuid was null or undefined when calling revertIdentity.');
         }
 
-        const queryParameters: runtime.HTTPQuery = {};
+        const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -446,7 +446,7 @@ export class SessionApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('body','Required parameter requestParameters.body was null or undefined when calling setSessionSsoToken.');
         }
 
-        const queryParameters: runtime.HTTPQuery = {};
+        const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 

@@ -50,7 +50,7 @@ export class ServiceAccountApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('serviceAccountCreationSchema','Required parameter requestParameters.serviceAccountCreationSchema was null or undefined when calling createServiceAccount.');
         }
 
-        const queryParameters: runtime.HTTPQuery = {};
+        const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -83,7 +83,7 @@ export class ServiceAccountApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('uuid','Required parameter requestParameters.uuid was null or undefined when calling getServiceAccount.');
         }
 
-        const queryParameters: runtime.HTTPQuery = {};
+        const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
