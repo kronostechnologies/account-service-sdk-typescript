@@ -18,15 +18,18 @@ import {
     ErrorPayload,
     ErrorPayloadFromJSON,
     ErrorPayloadToJSON,
-    ServiceAccountCreatedSchema,
-    ServiceAccountCreatedSchemaFromJSON,
-    ServiceAccountCreatedSchemaToJSON,
     ServiceAccountCreationSchema,
     ServiceAccountCreationSchemaFromJSON,
     ServiceAccountCreationSchemaToJSON,
     ServiceAccountSchema,
     ServiceAccountSchemaFromJSON,
     ServiceAccountSchemaToJSON,
+    ServiceAccountUpdateSchema,
+    ServiceAccountUpdateSchemaFromJSON,
+    ServiceAccountUpdateSchemaToJSON,
+    ServiceAccountUuidSchema,
+    ServiceAccountUuidSchemaFromJSON,
+    ServiceAccountUuidSchemaToJSON,
 } from '../models';
 
 export interface CreateServiceAccountRequest {
@@ -37,6 +40,15 @@ export interface GetServiceAccountRequest {
     uuid: string;
 }
 
+export interface SearchServiceAccountRequest {
+    name?: string | null;
+}
+
+export interface UpdateServiceAccountRequest {
+    uuid: string;
+    serviceAccountUpdateSchema: ServiceAccountUpdateSchema;
+}
+
 /**
  * 
  */
@@ -45,7 +57,7 @@ export class ServiceAccountApi extends runtime.BaseAPI {
     /**
      * Creates a new service account
      */
-    async createServiceAccountRaw(requestParameters: CreateServiceAccountRequest): Promise<runtime.ApiResponse<ServiceAccountCreatedSchema>> {
+    async createServiceAccountRaw(requestParameters: CreateServiceAccountRequest): Promise<runtime.ApiResponse<ServiceAccountUuidSchema>> {
         if (requestParameters.serviceAccountCreationSchema === null || requestParameters.serviceAccountCreationSchema === undefined) {
             throw new runtime.RequiredError('serviceAccountCreationSchema','Required parameter requestParameters.serviceAccountCreationSchema was null or undefined when calling createServiceAccount.');
         }
@@ -64,13 +76,13 @@ export class ServiceAccountApi extends runtime.BaseAPI {
             body: ServiceAccountCreationSchemaToJSON(requestParameters.serviceAccountCreationSchema),
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ServiceAccountCreatedSchemaFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ServiceAccountUuidSchemaFromJSON(jsonValue));
     }
 
     /**
      * Creates a new service account
      */
-    async createServiceAccount(requestParameters: CreateServiceAccountRequest): Promise<ServiceAccountCreatedSchema> {
+    async createServiceAccount(requestParameters: CreateServiceAccountRequest): Promise<ServiceAccountUuidSchema> {
         const response = await this.createServiceAccountRaw(requestParameters);
         return await response.value();
     }
@@ -102,6 +114,73 @@ export class ServiceAccountApi extends runtime.BaseAPI {
      */
     async getServiceAccount(requestParameters: GetServiceAccountRequest): Promise<ServiceAccountSchema> {
         const response = await this.getServiceAccountRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Searches service accounts that match ALL params. If none are provided, returns all service accounts
+     */
+    async searchServiceAccountRaw(requestParameters: SearchServiceAccountRequest): Promise<runtime.ApiResponse<Array<ServiceAccountSchema>>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.name !== undefined) {
+            queryParameters['name'] = requestParameters.name;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/serviceAccounts`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ServiceAccountSchemaFromJSON));
+    }
+
+    /**
+     * Searches service accounts that match ALL params. If none are provided, returns all service accounts
+     */
+    async searchServiceAccount(requestParameters: SearchServiceAccountRequest): Promise<Array<ServiceAccountSchema>> {
+        const response = await this.searchServiceAccountRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Updates a service account by uuid
+     */
+    async updateServiceAccountRaw(requestParameters: UpdateServiceAccountRequest): Promise<runtime.ApiResponse<ServiceAccountUuidSchema>> {
+        if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
+            throw new runtime.RequiredError('uuid','Required parameter requestParameters.uuid was null or undefined when calling updateServiceAccount.');
+        }
+
+        if (requestParameters.serviceAccountUpdateSchema === null || requestParameters.serviceAccountUpdateSchema === undefined) {
+            throw new runtime.RequiredError('serviceAccountUpdateSchema','Required parameter requestParameters.serviceAccountUpdateSchema was null or undefined when calling updateServiceAccount.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/serviceAccounts/{uuid}`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ServiceAccountUpdateSchemaToJSON(requestParameters.serviceAccountUpdateSchema),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ServiceAccountUuidSchemaFromJSON(jsonValue));
+    }
+
+    /**
+     * Updates a service account by uuid
+     */
+    async updateServiceAccount(requestParameters: UpdateServiceAccountRequest): Promise<ServiceAccountUuidSchema> {
+        const response = await this.updateServiceAccountRaw(requestParameters);
         return await response.value();
     }
 
