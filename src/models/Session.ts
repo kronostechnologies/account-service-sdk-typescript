@@ -57,6 +57,12 @@ export interface Session {
      * @type {Date}
      * @memberof Session
      */
+    suspend?: Date;
+    /**
+     * 
+     * @type {Date}
+     * @memberof Session
+     */
     expire?: Date;
     /**
      * 
@@ -103,6 +109,7 @@ export function SessionFromJSONTyped(json: any, ignoreDiscriminator: boolean): S
         'sessionId': !exists(json, 'sessionId') ? undefined : json['sessionId'],
         'state': !exists(json, 'state') ? undefined : SessionStateFromJSON(json['state']),
         'created': !exists(json, 'created') ? undefined : (new Date(json['created'])),
+        'suspend': !exists(json, 'suspend') ? undefined : (new Date(json['suspend'])),
         'expire': !exists(json, 'expire') ? undefined : (new Date(json['expire'])),
         'user': !exists(json, 'user') ? undefined : UserFromJSON(json['user']),
         'actor': !exists(json, 'actor') ? undefined : UserFromJSON(json['actor']),
@@ -124,6 +131,7 @@ export function SessionToJSON(value?: Session | null): any {
         'sessionId': value.sessionId,
         'state': SessionStateToJSON(value.state),
         'created': value.created === undefined ? undefined : (value.created.toISOString()),
+        'suspend': value.suspend === undefined ? undefined : (value.suspend.toISOString()),
         'expire': value.expire === undefined ? undefined : (value.expire.toISOString()),
         'user': UserToJSON(value.user),
         'actor': UserToJSON(value.actor),

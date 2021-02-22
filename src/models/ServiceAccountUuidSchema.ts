@@ -14,24 +14,24 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Information about the created service account
+ * UUID response for a service account
  * @export
- * @interface ServiceAccountCreatedSchema
+ * @interface ServiceAccountUuidSchema
  */
-export interface ServiceAccountCreatedSchema {
+export interface ServiceAccountUuidSchema {
     /**
      * 
      * @type {string}
-     * @memberof ServiceAccountCreatedSchema
+     * @memberof ServiceAccountUuidSchema
      */
     uuid?: string;
 }
 
-export function ServiceAccountCreatedSchemaFromJSON(json: any): ServiceAccountCreatedSchema {
-    return ServiceAccountCreatedSchemaFromJSONTyped(json, false);
+export function ServiceAccountUuidSchemaFromJSON(json: any): ServiceAccountUuidSchema {
+    return ServiceAccountUuidSchemaFromJSONTyped(json, false);
 }
 
-export function ServiceAccountCreatedSchemaFromJSONTyped(json: any, ignoreDiscriminator: boolean): ServiceAccountCreatedSchema {
+export function ServiceAccountUuidSchemaFromJSONTyped(json: any, ignoreDiscriminator: boolean): ServiceAccountUuidSchema {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -41,7 +41,7 @@ export function ServiceAccountCreatedSchemaFromJSONTyped(json: any, ignoreDiscri
     };
 }
 
-export function ServiceAccountCreatedSchemaToJSON(value?: ServiceAccountCreatedSchema | null): any {
+export function ServiceAccountUuidSchemaToJSON(value?: ServiceAccountUuidSchema | null): any {
     if (value === undefined) {
         return undefined;
     }
