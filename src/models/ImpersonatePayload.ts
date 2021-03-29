@@ -24,7 +24,7 @@ export interface ImpersonatePayload {
      * @type {string}
      * @memberof ImpersonatePayload
      */
-    userUuid?: string;
+    userUuid: string;
 }
 
 export function ImpersonatePayloadFromJSON(json: any): ImpersonatePayload {
@@ -37,7 +37,7 @@ export function ImpersonatePayloadFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'userUuid': !exists(json, 'userUuid') ? undefined : json['userUuid'],
+        'userUuid': json['userUuid'],
     };
 }
 

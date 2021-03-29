@@ -24,13 +24,13 @@ export interface SsoProvider {
      * @type {string}
      * @memberof SsoProvider
      */
-    provider?: string;
+    provider: string;
     /**
      * External identifier the user used to login with the SSO provider.
      * @type {string}
      * @memberof SsoProvider
      */
-    identifier?: string;
+    identifier: string;
 }
 
 export function SsoProviderFromJSON(json: any): SsoProvider {
@@ -43,8 +43,8 @@ export function SsoProviderFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     return {
         
-        'provider': !exists(json, 'provider') ? undefined : json['provider'],
-        'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
+        'provider': json['provider'],
+        'identifier': json['identifier'],
     };
 }
 

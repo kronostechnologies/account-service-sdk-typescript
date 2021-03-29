@@ -31,7 +31,7 @@ export interface ErrorPayload {
      * @type {ErrorMessage}
      * @memberof ErrorPayload
      */
-    message?: ErrorMessage;
+    message: ErrorMessage;
     /**
      * 
      * @type {string}
@@ -50,7 +50,7 @@ export function ErrorPayloadFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
-        'message': !exists(json, 'message') ? undefined : ErrorMessageFromJSON(json['message']),
+        'message': ErrorMessageFromJSON(json['message']),
         'description': !exists(json, 'description') ? undefined : json['description'],
     };
 }

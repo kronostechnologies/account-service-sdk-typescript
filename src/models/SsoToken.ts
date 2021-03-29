@@ -24,13 +24,13 @@ export interface SsoToken {
      * @type {string}
      * @memberof SsoToken
      */
-    id?: string;
+    id: string;
     /**
      * Token value returned as stored. There is no double-encoding.
      * @type {string}
      * @memberof SsoToken
      */
-    value?: string;
+    value: string;
 }
 
 export function SsoTokenFromJSON(json: any): SsoToken {
@@ -43,8 +43,8 @@ export function SsoTokenFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'value': !exists(json, 'value') ? undefined : json['value'],
+        'id': json['id'],
+        'value': json['value'],
     };
 }
 

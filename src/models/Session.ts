@@ -39,37 +39,43 @@ export interface Session {
      * @type {string}
      * @memberof Session
      */
-    sessionId?: string;
+    sessionId: string;
     /**
      * 
      * @type {SessionState}
      * @memberof Session
      */
-    state?: SessionState;
+    state: SessionState;
     /**
      * 
      * @type {Date}
      * @memberof Session
      */
-    created?: Date;
+    created: Date;
     /**
      * 
      * @type {Date}
      * @memberof Session
      */
-    suspend?: Date;
+    suspend: Date;
     /**
      * 
      * @type {Date}
      * @memberof Session
      */
-    expire?: Date;
+    expire: Date;
+    /**
+     * Indicate the domain name the session cookie was emitted for.
+     * @type {string}
+     * @memberof Session
+     */
+    cookieDomain?: string | null;
     /**
      * 
      * @type {User}
      * @memberof Session
      */
-    user?: User;
+    user: User;
     /**
      * 
      * @type {User}
@@ -87,13 +93,13 @@ export interface Session {
      * @type {boolean}
      * @memberof Session
      */
-    enabledForEquisoftConnect?: boolean;
+    enabledForEquisoftConnect: boolean;
     /**
      * Indicate that the session is initiated from a mobile device.
      * @type {boolean}
      * @memberof Session
      */
-    mobile?: boolean;
+    mobile: boolean;
 }
 
 export function SessionFromJSON(json: any): Session {
@@ -106,16 +112,17 @@ export function SessionFromJSONTyped(json: any, ignoreDiscriminator: boolean): S
     }
     return {
         
-        'sessionId': !exists(json, 'sessionId') ? undefined : json['sessionId'],
-        'state': !exists(json, 'state') ? undefined : SessionStateFromJSON(json['state']),
-        'created': !exists(json, 'created') ? undefined : (new Date(json['created'])),
-        'suspend': !exists(json, 'suspend') ? undefined : (new Date(json['suspend'])),
-        'expire': !exists(json, 'expire') ? undefined : (new Date(json['expire'])),
-        'user': !exists(json, 'user') ? undefined : UserFromJSON(json['user']),
+        'sessionId': json['sessionId'],
+        'state': SessionStateFromJSON(json['state']),
+        'created': (new Date(json['created'])),
+        'suspend': (new Date(json['suspend'])),
+        'expire': (new Date(json['expire'])),
+        'cookieDomain': !exists(json, 'cookieDomain') ? undefined : json['cookieDomain'],
+        'user': UserFromJSON(json['user']),
         'actor': !exists(json, 'actor') ? undefined : UserFromJSON(json['actor']),
         'sso': !exists(json, 'sso') ? undefined : SsoProviderFromJSON(json['sso']),
-        'enabledForEquisoftConnect': !exists(json, 'enabledForEquisoftConnect') ? undefined : json['enabledForEquisoftConnect'],
-        'mobile': !exists(json, 'mobile') ? undefined : json['mobile'],
+        'enabledForEquisoftConnect': json['enabledForEquisoftConnect'],
+        'mobile': json['mobile'],
     };
 }
 
@@ -130,9 +137,10 @@ export function SessionToJSON(value?: Session | null): any {
         
         'sessionId': value.sessionId,
         'state': SessionStateToJSON(value.state),
-        'created': value.created === undefined ? undefined : (value.created.toISOString()),
-        'suspend': value.suspend === undefined ? undefined : (value.suspend.toISOString()),
-        'expire': value.expire === undefined ? undefined : (value.expire.toISOString()),
+        'created': (value.created.toISOString()),
+        'suspend': (value.suspend.toISOString()),
+        'expire': (value.expire.toISOString()),
+        'cookieDomain': value.cookieDomain,
         'user': UserToJSON(value.user),
         'actor': UserToJSON(value.actor),
         'sso': SsoProviderToJSON(value.sso),

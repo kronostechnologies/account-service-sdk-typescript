@@ -24,7 +24,7 @@ export interface UserAccountSearchResult {
      * @type {string}
      * @memberof UserAccountSearchResult
      */
-    uuid?: string;
+    uuid: string;
 }
 
 export function UserAccountSearchResultFromJSON(json: any): UserAccountSearchResult {
@@ -37,7 +37,7 @@ export function UserAccountSearchResultFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
+        'uuid': json['uuid'],
     };
 }
 

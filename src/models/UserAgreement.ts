@@ -31,7 +31,7 @@ export interface UserAgreement {
      * @type {UserAgreementState}
      * @memberof UserAgreement
      */
-    state?: UserAgreementState;
+    state: UserAgreementState;
 }
 
 export function UserAgreementFromJSON(json: any): UserAgreement {
@@ -44,7 +44,7 @@ export function UserAgreementFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'state': !exists(json, 'state') ? undefined : UserAgreementStateFromJSON(json['state']),
+        'state': UserAgreementStateFromJSON(json['state']),
     };
 }
 

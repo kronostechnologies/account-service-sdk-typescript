@@ -24,13 +24,13 @@ export interface Id {
      * @type {number}
      * @memberof Id
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof Id
      */
-    uuid?: string;
+    uuid: string;
 }
 
 export function IdFromJSON(json: any): Id {
@@ -43,8 +43,8 @@ export function IdFromJSONTyped(json: any, ignoreDiscriminator: boolean): Id {
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
+        'id': json['id'],
+        'uuid': json['uuid'],
     };
 }
 

@@ -39,25 +39,25 @@ export interface User {
      * @type {number}
      * @memberof User
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    uuid?: string;
+    uuid: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    displayName?: string;
+    displayName: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    email?: string;
+    email: string;
     /**
      * Mobile phone used for sms password reset.
      * @type {string}
@@ -69,37 +69,37 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    locale?: string;
+    locale: string;
     /**
      * 
      * @type {UserState}
      * @memberof User
      */
-    state?: UserState;
+    state: UserState;
     /**
      * Roles the user is member a member of.
      * @type {Array<string>}
      * @memberof User
      */
-    roles?: Array<string>;
+    roles: Array<string>;
     /**
      * User deletion is disabled.
      * @type {boolean}
      * @memberof User
      */
-    deletable?: boolean;
+    deletable: boolean;
     /**
      * User is accounted for billing.
      * @type {boolean}
      * @memberof User
      */
-    billable?: boolean;
+    billable: boolean;
     /**
      * 
      * @type {UserAgreement}
      * @memberof User
      */
-    agreement?: UserAgreement;
+    agreement: UserAgreement;
     /**
      * 
      * @type {Date}
@@ -111,7 +111,7 @@ export interface User {
      * @type {Array<ServiceAccess>}
      * @memberof User
      */
-    services?: Array<ServiceAccess>;
+    services: Array<ServiceAccess>;
 }
 
 export function UserFromJSON(json: any): User {
@@ -124,19 +124,19 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
-        'displayName': !exists(json, 'displayName') ? undefined : json['displayName'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
+        'id': json['id'],
+        'uuid': json['uuid'],
+        'displayName': json['displayName'],
+        'email': json['email'],
         'mobilePhone': !exists(json, 'mobilePhone') ? undefined : json['mobilePhone'],
-        'locale': !exists(json, 'locale') ? undefined : json['locale'],
-        'state': !exists(json, 'state') ? undefined : UserStateFromJSON(json['state']),
-        'roles': !exists(json, 'roles') ? undefined : json['roles'],
-        'deletable': !exists(json, 'deletable') ? undefined : json['deletable'],
-        'billable': !exists(json, 'billable') ? undefined : json['billable'],
-        'agreement': !exists(json, 'agreement') ? undefined : UserAgreementFromJSON(json['agreement']),
+        'locale': json['locale'],
+        'state': UserStateFromJSON(json['state']),
+        'roles': json['roles'],
+        'deletable': json['deletable'],
+        'billable': json['billable'],
+        'agreement': UserAgreementFromJSON(json['agreement']),
         'created': !exists(json, 'created') ? undefined : (json['created'] === null ? null : new Date(json['created'])),
-        'services': !exists(json, 'services') ? undefined : ((json['services'] as Array<any>).map(ServiceAccessFromJSON)),
+        'services': ((json['services'] as Array<any>).map(ServiceAccessFromJSON)),
     };
 }
 
@@ -161,7 +161,7 @@ export function UserToJSON(value?: User | null): any {
         'billable': value.billable,
         'agreement': UserAgreementToJSON(value.agreement),
         'created': value.created === undefined ? undefined : (value.created === null ? null : value.created.toISOString()),
-        'services': value.services === undefined ? undefined : ((value.services as Array<any>).map(ServiceAccessToJSON)),
+        'services': ((value.services as Array<any>).map(ServiceAccessToJSON)),
     };
 }
 

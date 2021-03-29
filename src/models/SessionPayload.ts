@@ -31,7 +31,7 @@ export interface SessionPayload {
      * @type {string}
      * @memberof SessionPayload
      */
-    userUuid?: string;
+    userUuid: string;
     /**
      * 
      * @type {boolean}
@@ -57,6 +57,12 @@ export interface SessionPayload {
      */
     mobileDevice?: boolean;
     /**
+     * Indicate the domain name the session cookie was emitted for. If null, the cookie is assumed to be on the current hostname.
+     * @type {string}
+     * @memberof SessionPayload
+     */
+    cookieDomain?: string | null;
+    /**
      * Indicate that the session is initiated from a public computer.
      * @type {boolean}
      * @memberof SessionPayload
@@ -80,11 +86,12 @@ export function SessionPayloadFromJSONTyped(json: any, ignoreDiscriminator: bool
     }
     return {
         
-        'userUuid': !exists(json, 'userUuid') ? undefined : json['userUuid'],
+        'userUuid': json['userUuid'],
         'enable': !exists(json, 'enable') ? undefined : json['enable'],
         'sso': !exists(json, 'sso') ? undefined : SsoProviderFromJSON(json['sso']),
         'publicComputer': !exists(json, 'publicComputer') ? undefined : json['publicComputer'],
         'mobileDevice': !exists(json, 'mobileDevice') ? undefined : json['mobileDevice'],
+        'cookieDomain': !exists(json, 'cookieDomain') ? undefined : json['cookieDomain'],
         'isPublicComputer': !exists(json, 'isPublicComputer') ? undefined : json['isPublicComputer'],
         'isMobileDevice': !exists(json, 'isMobileDevice') ? undefined : json['isMobileDevice'],
     };
@@ -104,6 +111,7 @@ export function SessionPayloadToJSON(value?: SessionPayload | null): any {
         'sso': SsoProviderToJSON(value.sso),
         'publicComputer': value.publicComputer,
         'mobileDevice': value.mobileDevice,
+        'cookieDomain': value.cookieDomain,
         'isPublicComputer': value.isPublicComputer,
         'isMobileDevice': value.isMobileDevice,
     };
