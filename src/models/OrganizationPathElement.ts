@@ -13,42 +13,49 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    LocalizedString,
+    LocalizedStringFromJSON,
+    LocalizedStringFromJSONTyped,
+    LocalizedStringToJSON,
+} from './';
+
 /**
  * 
  * @export
- * @interface Id
+ * @interface OrganizationPathElement
  */
-export interface Id {
+export interface OrganizationPathElement {
     /**
      * 
-     * @type {number}
-     * @memberof Id
+     * @type {LocalizedString}
+     * @memberof OrganizationPathElement
      */
-    id: number;
+    name: LocalizedString;
     /**
      * 
      * @type {string}
-     * @memberof Id
+     * @memberof OrganizationPathElement
      */
     uuid: string;
 }
 
-export function IdFromJSON(json: any): Id {
-    return IdFromJSONTyped(json, false);
+export function OrganizationPathElementFromJSON(json: any): OrganizationPathElement {
+    return OrganizationPathElementFromJSONTyped(json, false);
 }
 
-export function IdFromJSONTyped(json: any, ignoreDiscriminator: boolean): Id {
+export function OrganizationPathElementFromJSONTyped(json: any, ignoreDiscriminator: boolean): OrganizationPathElement {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'id': json['id'],
+        'name': LocalizedStringFromJSON(json['name']),
         'uuid': json['uuid'],
     };
 }
 
-export function IdToJSON(value?: Id | null): any {
+export function OrganizationPathElementToJSON(value?: OrganizationPathElement | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -57,7 +64,7 @@ export function IdToJSON(value?: Id | null): any {
     }
     return {
         
-        'id': value.id,
+        'name': LocalizedStringToJSON(value.name),
         'uuid': value.uuid,
     };
 }

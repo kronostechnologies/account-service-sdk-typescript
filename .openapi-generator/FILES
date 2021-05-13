@@ -3,7 +3,6 @@
 README.md
 package.json
 src/apis/OrganizationApi.ts
-src/apis/OrganizationRoleApi.ts
 src/apis/PermissionApi.ts
 src/apis/ServiceAccountApi.ts
 src/apis/SessionApi.ts
@@ -20,11 +19,16 @@ src/models/ErrorMessage.ts
 src/models/ErrorPayload.ts
 src/models/Id.ts
 src/models/ImpersonatePayload.ts
+src/models/LegacyRoleSchema.ts
+src/models/ListOrganizationElement.ts
+src/models/ListUserOrganizations.ts
 src/models/LocalizedString.ts
 src/models/Organization.ts
 src/models/OrganizationCreated.ts
+src/models/OrganizationPathElement.ts
 src/models/PermissionCreated.ts
 src/models/RoleCreated.ts
+src/models/RolesOnOrganization.ts
 src/models/ServiceAccess.ts
 src/models/ServiceAccountCreationSchema.ts
 src/models/ServiceAccountSchema.ts
@@ -38,9 +42,12 @@ src/models/SessionState.ts
 src/models/SsoProvider.ts
 src/models/SsoToken.ts
 src/models/User.ts
+src/models/UserAccountPermission.ts
+src/models/UserAccountRole.ts
 src/models/UserAccountSearchResult.ts
 src/models/UserAgreement.ts
 src/models/UserAgreementState.ts
+src/models/UserPermissions.ts
 src/models/UserState.ts
 src/models/index.ts
 src/runtime.ts

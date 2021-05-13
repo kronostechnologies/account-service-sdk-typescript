@@ -13,42 +13,49 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    LocalizedString,
+    LocalizedStringFromJSON,
+    LocalizedStringFromJSONTyped,
+    LocalizedStringToJSON,
+} from './';
+
 /**
  * 
  * @export
- * @interface Id
+ * @interface UserAccountRole
  */
-export interface Id {
-    /**
-     * 
-     * @type {number}
-     * @memberof Id
-     */
-    id: number;
+export interface UserAccountRole {
     /**
      * 
      * @type {string}
-     * @memberof Id
+     * @memberof UserAccountRole
      */
     uuid: string;
+    /**
+     * 
+     * @type {LocalizedString}
+     * @memberof UserAccountRole
+     */
+    name: LocalizedString;
 }
 
-export function IdFromJSON(json: any): Id {
-    return IdFromJSONTyped(json, false);
+export function UserAccountRoleFromJSON(json: any): UserAccountRole {
+    return UserAccountRoleFromJSONTyped(json, false);
 }
 
-export function IdFromJSONTyped(json: any, ignoreDiscriminator: boolean): Id {
+export function UserAccountRoleFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserAccountRole {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'id': json['id'],
         'uuid': json['uuid'],
+        'name': LocalizedStringFromJSON(json['name']),
     };
 }
 
-export function IdToJSON(value?: Id | null): any {
+export function UserAccountRoleToJSON(value?: UserAccountRole | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -57,8 +64,8 @@ export function IdToJSON(value?: Id | null): any {
     }
     return {
         
-        'id': value.id,
         'uuid': value.uuid,
+        'name': LocalizedStringToJSON(value.name),
     };
 }
 

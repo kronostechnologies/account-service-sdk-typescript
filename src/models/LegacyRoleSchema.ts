@@ -21,48 +21,41 @@ import {
 } from './';
 
 /**
- * created role schema
+ * User legacy roles
  * @export
- * @interface RoleCreated
+ * @interface LegacyRoleSchema
  */
-export interface RoleCreated {
+export interface LegacyRoleSchema {
     /**
      * 
      * @type {string}
-     * @memberof RoleCreated
+     * @memberof LegacyRoleSchema
      */
-    uuid: string;
+    code: string;
     /**
      * 
      * @type {LocalizedString}
-     * @memberof RoleCreated
+     * @memberof LegacyRoleSchema
      */
     name: LocalizedString;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof RoleCreated
-     */
-    permissions: Array<string>;
 }
 
-export function RoleCreatedFromJSON(json: any): RoleCreated {
-    return RoleCreatedFromJSONTyped(json, false);
+export function LegacyRoleSchemaFromJSON(json: any): LegacyRoleSchema {
+    return LegacyRoleSchemaFromJSONTyped(json, false);
 }
 
-export function RoleCreatedFromJSONTyped(json: any, ignoreDiscriminator: boolean): RoleCreated {
+export function LegacyRoleSchemaFromJSONTyped(json: any, ignoreDiscriminator: boolean): LegacyRoleSchema {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'uuid': json['uuid'],
+        'code': json['code'],
         'name': LocalizedStringFromJSON(json['name']),
-        'permissions': json['permissions'],
     };
 }
 
-export function RoleCreatedToJSON(value?: RoleCreated | null): any {
+export function LegacyRoleSchemaToJSON(value?: LegacyRoleSchema | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -71,9 +64,8 @@ export function RoleCreatedToJSON(value?: RoleCreated | null): any {
     }
     return {
         
-        'uuid': value.uuid,
+        'code': value.code,
         'name': LocalizedStringToJSON(value.name),
-        'permissions': value.permissions,
     };
 }
 
