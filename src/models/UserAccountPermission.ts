@@ -21,48 +21,41 @@ import {
 } from './';
 
 /**
- * created role schema
+ * 
  * @export
- * @interface RoleCreated
+ * @interface UserAccountPermission
  */
-export interface RoleCreated {
+export interface UserAccountPermission {
     /**
      * 
      * @type {string}
-     * @memberof RoleCreated
+     * @memberof UserAccountPermission
      */
-    uuid: string;
+    code: string;
     /**
      * 
      * @type {LocalizedString}
-     * @memberof RoleCreated
+     * @memberof UserAccountPermission
      */
     name: LocalizedString;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof RoleCreated
-     */
-    permissions: Array<string>;
 }
 
-export function RoleCreatedFromJSON(json: any): RoleCreated {
-    return RoleCreatedFromJSONTyped(json, false);
+export function UserAccountPermissionFromJSON(json: any): UserAccountPermission {
+    return UserAccountPermissionFromJSONTyped(json, false);
 }
 
-export function RoleCreatedFromJSONTyped(json: any, ignoreDiscriminator: boolean): RoleCreated {
+export function UserAccountPermissionFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserAccountPermission {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'uuid': json['uuid'],
+        'code': json['code'],
         'name': LocalizedStringFromJSON(json['name']),
-        'permissions': json['permissions'],
     };
 }
 
-export function RoleCreatedToJSON(value?: RoleCreated | null): any {
+export function UserAccountPermissionToJSON(value?: UserAccountPermission | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -71,9 +64,8 @@ export function RoleCreatedToJSON(value?: RoleCreated | null): any {
     }
     return {
         
-        'uuid': value.uuid,
+        'code': value.code,
         'name': LocalizedStringToJSON(value.name),
-        'permissions': value.permissions,
     };
 }
 

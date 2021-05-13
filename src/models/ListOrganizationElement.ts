@@ -27,64 +27,40 @@ import {
 /**
  * 
  * @export
- * @interface Organization
+ * @interface ListOrganizationElement
  */
-export interface Organization {
+export interface ListOrganizationElement {
     /**
      * 
      * @type {string}
-     * @memberof Organization
+     * @memberof ListOrganizationElement
      */
     uuid: string;
     /**
      * 
      * @type {LocalizedString}
-     * @memberof Organization
+     * @memberof ListOrganizationElement
      */
     name: LocalizedString;
     /**
      * 
      * @type {string}
-     * @memberof Organization
+     * @memberof ListOrganizationElement
      */
     parentUuid?: string | null;
     /**
-     * Path to the root organization, starting from the top level organization
+     * 
      * @type {Array<OrganizationPathElement>}
-     * @memberof Organization
+     * @memberof ListOrganizationElement
      */
     path: Array<OrganizationPathElement>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof Organization
-     */
-    equisoftConnectProfiles: Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof Organization
-     */
-    equisoftPlanProfiles: Array<string>;
-    /**
-     * 
-     * @type {Date}
-     * @memberof Organization
-     */
-    createdAt: Date;
-    /**
-     * 
-     * @type {Date}
-     * @memberof Organization
-     */
-    modifiedAt?: Date | null;
 }
 
-export function OrganizationFromJSON(json: any): Organization {
-    return OrganizationFromJSONTyped(json, false);
+export function ListOrganizationElementFromJSON(json: any): ListOrganizationElement {
+    return ListOrganizationElementFromJSONTyped(json, false);
 }
 
-export function OrganizationFromJSONTyped(json: any, ignoreDiscriminator: boolean): Organization {
+export function ListOrganizationElementFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListOrganizationElement {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -94,14 +70,10 @@ export function OrganizationFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'name': LocalizedStringFromJSON(json['name']),
         'parentUuid': !exists(json, 'parentUuid') ? undefined : json['parentUuid'],
         'path': ((json['path'] as Array<any>).map(OrganizationPathElementFromJSON)),
-        'equisoftConnectProfiles': json['equisoftConnectProfiles'],
-        'equisoftPlanProfiles': json['equisoftPlanProfiles'],
-        'createdAt': (new Date(json['createdAt'])),
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (json['modifiedAt'] === null ? null : new Date(json['modifiedAt'])),
     };
 }
 
-export function OrganizationToJSON(value?: Organization | null): any {
+export function ListOrganizationElementToJSON(value?: ListOrganizationElement | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -114,10 +86,6 @@ export function OrganizationToJSON(value?: Organization | null): any {
         'name': LocalizedStringToJSON(value.name),
         'parentUuid': value.parentUuid,
         'path': ((value.path as Array<any>).map(OrganizationPathElementToJSON)),
-        'equisoftConnectProfiles': value.equisoftConnectProfiles,
-        'equisoftPlanProfiles': value.equisoftPlanProfiles,
-        'createdAt': (value.createdAt.toISOString()),
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt === null ? null : value.modifiedAt.toISOString()),
     };
 }
 
