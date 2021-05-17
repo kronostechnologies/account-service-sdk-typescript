@@ -42,6 +42,7 @@ export interface GetUserRequest {
 
 export interface GetUserPermissionsRequest {
     uuid: string;
+    xUserUuid?: string;
 }
 
 export interface GetUuidByIdRequest {
@@ -52,6 +53,7 @@ export interface ListUsersRequest {
     identifierOrEmail?: string | null;
     identifier?: string | null;
     email?: string | null;
+    includeDeleted?: boolean | null;
 }
 
 /**
@@ -130,6 +132,10 @@ export class UserApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters.xUserUuid !== undefined && requestParameters.xUserUuid !== null) {
+            headerParameters['X-User-Uuid'] = String(requestParameters.xUserUuid);
+        }
+
         const response = await this.request({
             path: `/users/{uuid}/permissions`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'GET',
@@ -194,6 +200,10 @@ export class UserApi extends runtime.BaseAPI {
 
         if (requestParameters.email !== undefined) {
             queryParameters['email'] = requestParameters.email;
+        }
+
+        if (requestParameters.includeDeleted !== undefined) {
+            queryParameters['includeDeleted'] = requestParameters.includeDeleted;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

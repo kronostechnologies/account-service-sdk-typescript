@@ -63,12 +63,14 @@ export interface CreateRoleRequest {
 
 export interface GetOrganizationRequest {
     uuid: string;
+    xUserUuid?: string;
 }
 
 export interface ListOrganizationRequest {
     max: number;
-    pageToken?: string | null;
-    parent?: string | null;
+    pageToken?: string;
+    parent?: string;
+    xUserUuid?: string;
 }
 
 /**
@@ -236,6 +238,10 @@ export class OrganizationApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters.xUserUuid !== undefined && requestParameters.xUserUuid !== null) {
+            headerParameters['X-User-Uuid'] = String(requestParameters.xUserUuid);
+        }
+
         const response = await this.request({
             path: `/organizations/{uuid}`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
             method: 'GET',
@@ -277,6 +283,10 @@ export class OrganizationApi extends runtime.BaseAPI {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xUserUuid !== undefined && requestParameters.xUserUuid !== null) {
+            headerParameters['X-User-Uuid'] = String(requestParameters.xUserUuid);
+        }
 
         const response = await this.request({
             path: `/organizations`,
