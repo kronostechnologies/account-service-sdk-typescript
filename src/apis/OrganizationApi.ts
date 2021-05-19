@@ -61,6 +61,11 @@ export interface CreateRoleRequest {
     createRole: CreateRole;
 }
 
+export interface DeleteOrganizationRequest {
+    uuid: string;
+    xUserUuid?: string;
+}
+
 export interface GetOrganizationRequest {
     uuid: string;
     xUserUuid?: string;
@@ -224,6 +229,39 @@ export class OrganizationApi extends runtime.BaseAPI {
     async createRole(requestParameters: CreateRoleRequest): Promise<RoleCreated> {
         const response = await this.createRoleRaw(requestParameters);
         return await response.value();
+    }
+
+    /**
+     * Delete organization
+     */
+    async deleteOrganizationRaw(requestParameters: DeleteOrganizationRequest): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
+            throw new runtime.RequiredError('uuid','Required parameter requestParameters.uuid was null or undefined when calling deleteOrganization.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xUserUuid !== undefined && requestParameters.xUserUuid !== null) {
+            headerParameters['X-User-Uuid'] = String(requestParameters.xUserUuid);
+        }
+
+        const response = await this.request({
+            path: `/organizations/{uuid}`.replace(`{${"uuid"}}`, encodeURIComponent(String(requestParameters.uuid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete organization
+     */
+    async deleteOrganization(requestParameters: DeleteOrganizationRequest): Promise<void> {
+        await this.deleteOrganizationRaw(requestParameters);
     }
 
     /**

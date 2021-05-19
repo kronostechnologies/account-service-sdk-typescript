@@ -16,6 +16,7 @@ export * from './Organization';
 export * from './OrganizationCreated';
 export * from './OrganizationPathElement';
 export * from './PermissionCreated';
+export * from './Role';
 export * from './RoleCreated';
 export * from './RolesOnOrganization';
 export * from './ServiceAccess';

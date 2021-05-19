@@ -4,6 +4,7 @@ README.md
 package.json
 src/apis/OrganizationApi.ts
 src/apis/PermissionApi.ts
+src/apis/RoleApi.ts
 src/apis/ServiceAccountApi.ts
 src/apis/SessionApi.ts
 src/apis/UserApi.ts
@@ -27,6 +28,7 @@ src/models/Organization.ts
 src/models/OrganizationCreated.ts
 src/models/OrganizationPathElement.ts
 src/models/PermissionCreated.ts
+src/models/Role.ts
 src/models/RoleCreated.ts
 src/models/RolesOnOrganization.ts
 src/models/ServiceAccess.ts
